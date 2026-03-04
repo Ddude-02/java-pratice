@@ -10,7 +10,7 @@ public class RemoveDupli{
         for(int i=0;i<arr.length;i++){
             int a=arr[i];
             if(ls.contains(a)){
-                System.out.print("duplicate: "+a+"\n ");
+                System.out.print("duplicate: "+a+"\n");
             }
             else{
                 ls.add(a);
