@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>90-Day Java + SQL Bootcamp</title>
+<style>
+  @page {
+    size: A4;
+    margin: 0.6in;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 26pt;
+    color: #1B3A6B;
+    font-weight: bold;
+    border-bottom: 3px solid #1B3A6B;
+    padding-bottom: 10px;
+    margin-top: 0;
+  }
+  h1 .subtitle {
+    display: block;
+    font-size: 13pt;
+    color: #4a4a4a;
+    font-weight: normal;
+    margin-top: 6px;
+  }
+  h2 {
+    font-size: 18pt;
+    color: #1B3A6B;
+    font-weight: bold;
+    margin-top: 2.2em;
+    border-bottom: 1.5px solid #c7d3e6;
+    padding-bottom: 6px;
+    page-break-before: always;
+  }
+  h2:first-of-type { page-break-before: avoid; }
+  h3 {
+    font-size: 14pt;
+    color: #1B3A6B;
+    font-weight: bold;
+    margin-top: 1.6em;
+  }
+  h4 {
+    font-size: 11.5pt;
+    color: #1B3A6B;
+    font-weight: bold;
+    margin-top: 1.2em;
+  }
+  p { margin: 0.5em 0; }
+
+  /* ===== Tables ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0 1.5em;
+    font-size: 8.5pt;
+    page-break-inside: auto;
+  }
+  thead {
+    display: table-header-group; /* repeat header on page break */
+  }
+  tr { page-break-inside: avoid; }
+  th {
+    background: #1B3A6B;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 7px 9px;
+    border: 1px solid #14294d;
+    vertical-align: middle;
+  }
+  td {
+    padding: 6px 9px;
+    border: 1px solid #d7dee8;
+    text-align: left;
+    vertical-align: middle;
+  }
+  tr:nth-child(even) td { background: #EEF2F8; }
+  tr:nth-child(odd) td { background: #ffffff; }
+
+  .wide-table-wrap {
+    overflow-x: auto;
+  }
+
+  /* ===== Checklists ===== */
+  .checklist { list-style: none; padding-left: 0; margin: 0.6em 0; }
+  .checklist li { margin: 4px 0; }
+  .checklist li::before { content: "\2610\0020"; }
+
+  /* ===== Callout boxes ===== */
+  .callout {
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 1em 0;
+    font-size: 9.5pt;
+    border-left: 4px solid;
+    page-break-inside: avoid;
+  }
+  .callout-tip     { background: #E3F2FD; border-color: #1565C0; }
+  .callout-practice{ background: #E8F5E9; border-color: #2E7D32; }
+  .callout-revision{ background: #FFF8E1; border-color: #F9A825; }
+  .callout-mistake { background: #FFEBEE; border-color: #C62828; }
+  .callout b { display: block; margin-bottom: 3px; }
+
+  /* ===== Code blocks ===== */
+  pre, code {
+    font-family: "Courier New", monospace;
+    font-size: 8.5pt;
+  }
+  pre {
+    background: #F5F5F5;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    page-break-inside: avoid;
+  }
+
+  /* ===== Project cards ===== */
+  .project-card {
+    border: 1px solid #c7d3e6;
+    border-left: 5px solid #1B3A6B;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 0.8em 0;
+    background: #fafbfd;
+    page-break-inside: avoid;
+  }
+  .project-card h4 { margin-top: 0; }
+  .project-card .meta { font-size: 8.5pt; color: #555; margin: 2px 0; }
+
+  /* ===== TOC ===== */
+  .toc { list-style: none; padding-left: 0; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: #1B3A6B; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* ===== Cover ===== */
+  .cover {
+    text-align: center;
+    padding: 100px 0 60px;
+    page-break-after: always;
+  }
+  .cover h1 { border: none; font-size: 30pt; }
+  .cover .meta { font-size: 12pt; color: #444; margin-top: 20px; }
+
+  /* ===== Landscape for wide tables ===== */
+  .landscape {
+    page-break-before: always;
+  }
+  @media print {
+    .landscape table { font-size: 8pt; }
+  }
+
+  footer.page-footer {
+    text-align: center;
+    font-size: 8pt;
+    color: #888;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>&#128640; 90-Day Java + Backend SQL Bootcamp</h1>
+  <p class="meta">From Zero to Interview-Ready Java Backend Developer<br>
+  2 hrs/day &middot; 90 Days &middot; Beginner &rarr; Job-Ready</p>
+</div>
+
+<nav>
+  <h2 style="page-break-before: avoid;">Table of Contents</h2>
+  <ul class="toc">
+    <li><a href="#templates">1. Reusable Templates</a></li>
+    <li><a href="#roadmap">2. Master Roadmap</a></li>
+    <li><a href="#weeks">3. Weekly Session Tables (Week 1&ndash;13)</a></li>
+    <li><a href="#projects">4. Project Summary Cards</a></li>
+    <li><a href="#interview">5. Interview Preparation Kit</a></li>
+    <li><a href="#tracker">6. Progress Trackers</a></li>
+  </ul>
+</nav>
+
+<h2 id="templates">1. Reusable Templates</h2>
+
+<h3>Daily Homework Standard</h3>
+<ul class="checklist">
+  <li>Solve assigned Java problems (see Practice Standard)</li>
+  <li>Solve assigned SQL queries</li>
+  <li>Review today's notes</li>
+  <li>Update GitHub if working on a project</li>
+</ul>
+
+<div class="callout callout-revision">
+  <b>Daily Revision Routine (final 10 min of session)</b>
+  Review today's concepts &middot; Update flashcards &middot; Revisit yesterday's mistakes
+</div>
+
+<h3>Practice Standard</h3>
+<table>
+<thead><tr><th>Weekday</th><th>Difficulty</th><th>Focus</th></tr></thead>
+<tbody>
+<tr><td>Mon</td><td>Easy</td><td>New concept intro</td></tr>
+<tr><td>Tue</td><td>Easy&ndash;Medium</td><td>Reinforcement</td></tr>
+<tr><td>Wed</td><td>Medium</td><td>Applied problems</td></tr>
+<tr><td>Thu</td><td>Medium</td><td>Applied problems</td></tr>
+<tr><td>Fri</td><td>Hard</td><td>Challenge set</td></tr>
+<tr><td>Sat</td><td>Project</td><td>Build/ship</td></tr>
+<tr><td>Sun</td><td>Revision + Quiz</td><td>Weekly Checkpoint</td></tr>
+</tbody>
+</table>
+
+<div class="callout callout-practice">
+  <b>Weekly Checkpoint</b> (every Revision + Quiz day)<br>
+  Revision Complete &middot; Java Practice Complete &middot; SQL Practice Complete &middot; Quiz Finished &middot; Project Updated &middot; GitHub Updated
+</div>
+
+<div class="callout callout-tip">
+  <b>Project Completion Checklist</b> (every project's final day)<br>
+  Code Completed &middot; README Updated &middot; SQL Script Saved &middot; GitHub Updated &middot; Tested &middot; Documentation Complete
+</div>
+
+<h3>Monthly Assessment Template</h3>
+<ul class="checklist">
+  <li>Java Coding Test (that month's topics)</li>
+  <li>SQL Test (that month's topics)</li>
+  <li>Project Review</li>
+  <li>Mock Interview (Month 2+)</li>
+  <li>Weak Topic Review</li>
+</ul>
+
+<h2 id="roadmap">2. Master Roadmap</h2>
+<div class="wide-table-wrap">
+<table>
+<thead><tr><th>Wk</th><th>Days</th><th>Java Focus</th><th>SQL Focus</th><th>Project (Stage Days)</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>1&ndash;7</td><td>Variables, Operators, Conditionals, Switch</td><td>SELECT, WHERE, ORDER BY, LIKE/IN/BETWEEN</td><td>&mdash;</td></tr>
+<tr><td>2</td><td>8&ndash;14</td><td>Loops, Nested Loops, Break/Continue, Loop Algorithms</td><td>GROUP BY, HAVING, Aggregates</td><td>Calculator (13 build, 14 refactor)</td></tr>
+<tr><td>3</td><td>15&ndash;21</td><td>Arrays (1D/2D), Array Algorithms, Strings, StringBuilder</td><td>INNER/LEFT/RIGHT/FULL/Self JOIN, Multi-table Joins</td><td>&mdash;</td></tr>
+<tr><td>4</td><td>22&ndash;28</td><td>Methods, Overloading, Recursion</td><td>Subqueries, Correlated Subqueries</td><td>Student Mgmt (25&ndash;27) &middot; <b>Month 1 Assessment (28)</b></td></tr>
+<tr><td>5</td><td>29&ndash;35</td><td>Classes, Constructors, Encapsulation, static, Packages</td><td>CTEs, Recursive CTEs, Views, Indexes</td><td>&mdash;</td></tr>
+<tr><td>6</td><td>36&ndash;42</td><td>Inheritance, super, Overriding, Polymorphism, Abstraction</td><td>Stored Procedures, Window Fns, Transactions/ACID</td><td>Bank Mgmt (41&ndash;42)</td></tr>
+<tr><td>7</td><td>43&ndash;49</td><td>Interfaces, Collections, Comparable/Comparator</td><td>Normalization (1NF&ndash;BCNF), Denormalization</td><td>Bank finish (44) &middot; Hospital DB (47&ndash;48)</td></tr>
+<tr><td>8</td><td>50&ndash;56</td><td>Exceptions, File Handling, Multithreading</td><td>Query Optimization</td><td>Library Mgmt (54) &middot; E-commerce DB (53&ndash;55) &middot; <b>Month 2 Assessment (56)</b></td></tr>
+<tr><td>9</td><td>57&ndash;63</td><td>DSA: Searching, Sorting, 2D Arrays, Strings, Stack</td><td>Execution Plans, DB Design, ER Diagrams</td><td>E-commerce finish (61) &middot; Bank DB (62&ndash;63)</td></tr>
+<tr><td>10</td><td>64&ndash;70</td><td>DSA: Linked Lists, HashMap, BST, Traversals</td><td>Performance Tuning</td><td>Bank DB finish (66) &middot; Employee Mgmt (69)</td></tr>
+<tr><td>11</td><td>71&ndash;77</td><td>DSA: AVL, Graphs, BFS/DFS, Recursion, Backtracking</td><td>Capstone DB build</td><td>Mock Coding + SQL (77)</td></tr>
+<tr><td>12</td><td>78&ndash;84</td><td>Inventory System, Interview Qs</td><td>SQL Interview Qs, Resume Prep</td><td>Inventory (78&ndash;79) &middot; <b>Mock Interview 1 (84)</b></td></tr>
+<tr><td>13</td><td>85&ndash;90</td><td>Capstone Backend, Full Mock Interview</td><td>Capstone integration, SQL Mock</td><td>Capstone (85&ndash;88) &middot; Graduation (90)</td></tr>
+</tbody>
+</table>
+</div>
+<p style="font-size:9pt; color:#555;"><em>Unless marked, every day = Java Session &rarr; SQL Session &rarr; Homework Standard &rarr; Revision Routine.</em></p>
+
+<h2 id="weeks">3. Weekly Session Tables</h2>
+
+<h3>Week 1 (Days 1&ndash;7) &mdash; Fundamentals</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Variables & Data Types</td><td>RDBMS Basics, SELECT</td></tr>
+<tr><td>2</td><td>Operators &mdash; Calculator</td><td>WHERE Basics</td></tr>
+<tr><td>3</td><td>Logical/Bitwise Operators</td><td>WHERE + AND/OR/NOT</td></tr>
+<tr><td>4</td><td>Scanner Input</td><td>LIKE / IN / BETWEEN</td></tr>
+<tr><td>5</td><td>if-else &mdash; Grade Calculator</td><td>ORDER BY</td></tr>
+<tr><td>6</td><td>switch-case &mdash; Menu Program</td><td>ORDER BY + LIMIT/Alias</td></tr>
+<tr><td>7</td><td><b>Revision + Quiz</b></td><td><b>Revision + Quiz</b></td></tr>
+</tbody>
+</table>
+
+<h3>Week 2 (Days 8&ndash;14) &mdash; Loops & Aggregation</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>8</td><td>for Loop &mdash; Pattern Printing</td><td>GROUP BY</td></tr>
+<tr><td>9</td><td>while/do-while &mdash; Sum & Average</td><td>HAVING</td></tr>
+<tr><td>10</td><td>Nested Loops &mdash; Multiplication Table</td><td>COUNT, SUM</td></tr>
+<tr><td>11</td><td>break & continue</td><td>AVG, MIN, MAX</td></tr>
+<tr><td>12</td><td>Loop Algorithms &mdash; Prime/Factorial/Fibonacci</td><td>GROUP BY + HAVING Combined</td></tr>
+<tr><td>13</td><td><b>Calculator &mdash; Build</b></td><td>calc_history Table</td></tr>
+<tr><td>14</td><td><b>Revision + Quiz</b> &mdash; Refactor Calculator</td><td><b>Revision + Quiz</b> &mdash; Timed Aggregate Quiz</td></tr>
+</tbody>
+</table>
+
+<h3>Week 3 (Days 15&ndash;21) &mdash; Arrays, Strings & Joins</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>15</td><td>1D Arrays &mdash; Sum/Max/Min</td><td>INNER JOIN</td></tr>
+<tr><td>16</td><td>2D Arrays &mdash; Matrix</td><td>LEFT JOIN</td></tr>
+<tr><td>17</td><td>Array Algorithms &mdash; Reverse/Search/Sort</td><td>RIGHT JOIN</td></tr>
+<tr><td>18</td><td>String Basics & Immutability</td><td>FULL JOIN</td></tr>
+<tr><td>19</td><td>String Methods &mdash; Palindrome/Anagram</td><td>Self Join</td></tr>
+<tr><td>20</td><td>StringBuilder</td><td>Multi-table Joins (3+)</td></tr>
+<tr><td>21</td><td><b>Revision + Quiz</b> &mdash; Array+String Mix</td><td><b>Revision + Quiz</b> &mdash; Timed Join Quiz</td></tr>
+</tbody>
+</table>
+
+<h3>Week 4 (Days 22&ndash;28) &mdash; Methods, Recursion, Subqueries + Project</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>22</td><td>Methods & Parameters &mdash; Utility Methods</td><td>Mixed Join Practice</td></tr>
+<tr><td>23</td><td>Method Overloading</td><td>Subqueries &mdash; Intro</td></tr>
+<tr><td>24</td><td>Recursion Basics &mdash; Factorial/Fibonacci</td><td>Correlated Subqueries</td></tr>
+<tr><td>25</td><td>Student Mgmt &mdash; Design Classes</td><td>Design students/marks Tables</td></tr>
+<tr><td>26</td><td>Student Mgmt &mdash; CRUD Logic</td><td>CRUD SQL</td></tr>
+<tr><td>27</td><td><b>Revision</b> &mdash; Polish Project</td><td><b>Revision</b> &mdash; Optimize Queries</td></tr>
+<tr><td>28</td><td><b>Month 1 Assessment</b> &mdash; Coding Test</td><td><b>Month 1 Assessment</b> &mdash; SQL Test</td></tr>
+</tbody>
+</table>
+
+<h3>Week 5 (Days 29&ndash;35) &mdash; OOP Foundations + CTE/Views/Indexes</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>29</td><td>Classes & Objects</td><td>CTE Basics</td></tr>
+<tr><td>30</td><td>Constructors & this</td><td>Recursive CTEs</td></tr>
+<tr><td>31</td><td>Encapsulation & Access Modifiers</td><td>Views</td></tr>
+<tr><td>32</td><td>Immutable Class Design</td><td>Views &mdash; Update Limitations</td></tr>
+<tr><td>33</td><td>static Keyword</td><td>Indexes &mdash; Intro</td></tr>
+<tr><td>34</td><td>Packages & import</td><td>Index Practice &mdash; Composite</td></tr>
+<tr><td>35</td><td><b>Revision + Quiz</b> &mdash; Mixed OOP</td><td><b>Revision + Quiz</b> &mdash; CTE/View/Index Quiz</td></tr>
+</tbody>
+</table>
+
+<h3>Week 6 (Days 36&ndash;42) &mdash; Inheritance, Polymorphism + Stored Proc/Window Fn + Project</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>36</td><td>Inheritance & extends</td><td>Stored Procedures &mdash; Intro</td></tr>
+<tr><td>37</td><td>super Keyword</td><td>Stored Procedures &mdash; Parameters</td></tr>
+<tr><td>38</td><td>Method Overriding</td><td>Window Fns &mdash; ROW_NUMBER/RANK</td></tr>
+<tr><td>39</td><td>Polymorphism (Runtime)</td><td>Window Fns &mdash; LEAD/LAG</td></tr>
+<tr><td>40</td><td>Abstraction & Abstract Classes</td><td>Transactions & ACID</td></tr>
+<tr><td>41</td><td>Bank Mgmt &mdash; Account Classes</td><td>Design accounts/transactions</td></tr>
+<tr><td>42</td><td>Bank Mgmt &mdash; Deposit/Withdraw Logic + <b>Revision</b></td><td>Transaction-safe Transfer Query + <b>Revision</b></td></tr>
+</tbody>
+</table>
+
+<h3>Week 7 (Days 43&ndash;49) &mdash; Interfaces, Collections + Normalization + Project</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>43</td><td>Interfaces</td><td>Normalization &mdash; 1NF/2NF</td></tr>
+<tr><td>44</td><td>Bank Mgmt &mdash; Finish & Polish</td><td>Normalization &mdash; 3NF/BCNF</td></tr>
+<tr><td>45</td><td>Collections &mdash; List</td><td>Denormalization Trade-offs</td></tr>
+<tr><td>46</td><td>Collections &mdash; Set</td><td>Mixed Normalization Practice</td></tr>
+<tr><td>47</td><td>Collections &mdash; Map</td><td>Hospital DB &mdash; Design Schema</td></tr>
+<tr><td>48</td><td>Comparable & Comparator</td><td>Hospital DB &mdash; Finish + Queries</td></tr>
+<tr><td>49</td><td><b>Revision + Quiz</b> &mdash; Mixed Collections</td><td><b>Revision + Quiz</b> &mdash; Normalization/Design Quiz</td></tr>
+</tbody>
+</table>
+
+<h3>Week 8 (Days 50&ndash;56) &mdash; Exceptions, Files, Threads + Optimization + Project + Assessment</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>50</td><td>try-catch-finally</td><td>Query Optimization &mdash; Intro</td></tr>
+<tr><td>51</td><td>Custom Exceptions &mdash; throw/throws</td><td>Optimization &mdash; Avoiding SELECT *</td></tr>
+<tr><td>52</td><td>File Handling &mdash; Read/Write</td><td>Mixed Advanced Practice</td></tr>
+<tr><td>53</td><td>Multithreading Basics</td><td>E-commerce DB &mdash; Design Schema</td></tr>
+<tr><td>54</td><td>Library Mgmt &mdash; Build</td><td>E-commerce DB &mdash; Continue</td></tr>
+<tr><td>55</td><td><b>Revision</b> &mdash; Polish Month 2 Projects</td><td><b>Revision</b> &mdash; Optimize E-commerce Queries</td></tr>
+<tr><td>56</td><td><b>Month 2 Assessment</b> &mdash; OOP+Collections Test</td><td><b>Month 2 Assessment</b> &mdash; Advanced SQL Test</td></tr>
+</tbody>
+</table>
+
+<h3>Week 9 (Days 57&ndash;63) &mdash; DSA: Arrays/Strings/Stack/Queue + DB Design/ER</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>57</td><td>DSA &mdash; Searching (Linear/Binary)</td><td>Execution Plans (EXPLAIN)</td></tr>
+<tr><td>58</td><td>DSA &mdash; Sorting (Bubble/Selection/Insertion)</td><td>Execution Plan Practice</td></tr>
+<tr><td>59</td><td>DSA &mdash; 2D Array Problems</td><td>Database Design Principles</td></tr>
+<tr><td>60</td><td>DSA &mdash; String Pattern Problems</td><td>ER Diagram &mdash; Basics</td></tr>
+<tr><td>61</td><td>DSA &mdash; Advanced String Problems</td><td>ER Diagram Practice + Finish E-commerce DB</td></tr>
+<tr><td>62</td><td>DSA &mdash; Stack</td><td>Bank DB Project &mdash; Design</td></tr>
+<tr><td>63</td><td><b>Revision + Quiz</b> &mdash; DSA Queue</td><td><b>Revision + Quiz</b> &mdash; Bank DB Continue</td></tr>
+</tbody>
+</table>
+
+<h3>Week 10 (Days 64&ndash;70) &mdash; DSA: Linked List/HashMap/Trees + Performance Tuning + Project</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>64</td><td>DSA &mdash; Singly Linked List</td><td>Performance Tuning &mdash; Basics</td></tr>
+<tr><td>65</td><td>DSA &mdash; Doubly/Circular Linked List</td><td>Performance Tuning Practice</td></tr>
+<tr><td>66</td><td>DSA &mdash; HashMap Internals</td><td>Bank DB Project &mdash; Finish</td></tr>
+<tr><td>67</td><td>DSA &mdash; Trees: BST Basics</td><td>Capstone DB &mdash; Requirements</td></tr>
+<tr><td>68</td><td>DSA &mdash; Tree Traversals</td><td>Capstone DB &mdash; Schema Draft v1</td></tr>
+<tr><td>69</td><td>Employee Mgmt &mdash; Build</td><td>Capstone DB &mdash; Refine Schema</td></tr>
+<tr><td>70</td><td><b>Revision + Quiz</b> &mdash; Linked List/Tree Mix</td><td><b>Revision + Quiz</b> &mdash; Performance-Tuning Quiz</td></tr>
+</tbody>
+</table>
+
+<h3>Week 11 (Days 71&ndash;77) &mdash; DSA: Advanced Trees/Graphs/Backtracking + Capstone DB</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>71</td><td>DSA &mdash; AVL Intuition</td><td>Capstone DB &mdash; Seed Data</td></tr>
+<tr><td>72</td><td>DSA &mdash; Graph Representation</td><td>Capstone DB &mdash; Analytical Queries</td></tr>
+<tr><td>73</td><td>DSA &mdash; BFS</td><td>Capstone DB &mdash; Analytical Queries 2</td></tr>
+<tr><td>74</td><td>DSA &mdash; DFS</td><td>Capstone DB &mdash; Indexing Pass</td></tr>
+<tr><td>75</td><td>DSA &mdash; Recursion Advanced</td><td>Capstone DB &mdash; Finalize & Document</td></tr>
+<tr><td>76</td><td>DSA &mdash; Backtracking Basics (N-Queens)</td><td>SQL Interview Qs &mdash; Joins/Subqueries</td></tr>
+<tr><td>77</td><td><b>Mock</b> &mdash; Sudoku Solver + Coding Test</td><td><b>Mock</b> &mdash; SQL Interview</td></tr>
+</tbody>
+</table>
+
+<h3>Week 12 (Days 78&ndash;84) &mdash; Java Project + Interview Prep</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>78</td><td>Inventory System &mdash; Design Classes</td><td>SQL Interview Qs &mdash; Window Functions</td></tr>
+<tr><td>79</td><td>Inventory System &mdash; Build Logic</td><td>SQL Interview Qs &mdash; Optimization</td></tr>
+<tr><td>80</td><td>Interview Qs &mdash; Core Java</td><td>Interview Qs &mdash; Normalization/Design</td></tr>
+<tr><td>81</td><td>Interview Qs &mdash; OOP</td><td>Mixed SQL Revision</td></tr>
+<tr><td>82</td><td>Interview Qs &mdash; Collections</td><td>Resume & Portfolio Prep</td></tr>
+<tr><td>83</td><td>Interview Qs &mdash; Exceptions/Threads</td><td>Resume & Portfolio Prep</td></tr>
+<tr><td>84</td><td><b>Mock Interview 1</b> &mdash; Java Round</td><td><b>Mock Interview 1</b> &mdash; SQL Round</td></tr>
+</tbody>
+</table>
+
+<h3>Week 13 (Days 85&ndash;90) &mdash; Final Week: Capstone & Graduation</h3>
+<table>
+<thead><tr><th>Day</th><th>Java Session</th><th>SQL Session</th></tr></thead>
+<tbody>
+<tr><td>85</td><td>Capstone &mdash; Architecture Planning</td><td>Capstone &mdash; Schema Finalize</td></tr>
+<tr><td>86</td><td>Capstone &mdash; Core Entity Classes</td><td>Capstone &mdash; DAO-style CRUD Queries</td></tr>
+<tr><td>87</td><td>Capstone &mdash; Service Layer + Exceptions</td><td>Capstone &mdash; Money/Order Transactions</td></tr>
+<tr><td>88</td><td>Capstone &mdash; Polish & Finalize</td><td>Capstone &mdash; Reporting Queries + Indexes</td></tr>
+<tr><td>89</td><td><b>Full Mock</b> &mdash; Java + OOP/DSA</td><td><b>Full Mock</b> &mdash; SQL + Design</td></tr>
+<tr><td>90</td><td><b>Graduation</b> &mdash; Resume/GitHub Checklist</td><td><b>Graduation</b> &mdash; SQL Portfolio Checklist</td></tr>
+</tbody>
+</table>
+
+<h2 id="projects">4. Project Summary Cards</h2>
+
+<div class="project-card">
+  <h4>Console Calculator</h4>
+  <p class="meta">Days 13&ndash;14</p>
+  <p><b>Skills:</b> Methods, switch, SQL table design<br>
+  <b>Output:</b> Working calculator + calc_history table</p>
+</div>
+
+<div class="project-card">
+  <h4>Student Management System</h4>
+  <p class="meta">Days 25&ndash;27</p>
+  <p><b>Skills:</b> Classes, CRUD, subqueries<br>
+  <b>Output:</b> Repo with students/marks schema</p>
+</div>
+
+<div class="project-card">
+  <h4>Bank Management System</h4>
+  <p class="meta">Days 41&ndash;44</p>
+  <p><b>Skills:</b> Inheritance, interfaces, transactions/ACID<br>
+  <b>Output:</b> Banking app + safe transfer queries</p>
+</div>
+
+<div class="project-card">
+  <h4>Hospital DB</h4>
+  <p class="meta">Days 47&ndash;48</p>
+  <p><b>Skills:</b> Collections, normalization<br>
+  <b>Output:</b> Normalized hospital schema</p>
+</div>
+
+<div class="project-card">
+  <h4>Library Management System</h4>
+  <p class="meta">Day 54</p>
+  <p><b>Skills:</b> File handling, multithreading<br>
+  <b>Output:</b> Borrow/return system</p>
+</div>
+
+<div class="project-card">
+  <h4>E-commerce DB</h4>
+  <p class="meta">Days 53&ndash;61</p>
+  <p><b>Skills:</b> Query optimization, ER diagrams<br>
+  <b>Output:</b> Full e-commerce schema</p>
+</div>
+
+<div class="project-card">
+  <h4>Bank DB (SQL-focused)</h4>
+  <p class="meta">Days 62&ndash;66</p>
+  <p><b>Skills:</b> Execution plans, performance tuning<br>
+  <b>Output:</b> Tuned reporting DB</p>
+</div>
+
+<div class="project-card">
+  <h4>Employee Management System</h4>
+  <p class="meta">Day 69</p>
+  <p><b>Skills:</b> Trees, hierarchical queries<br>
+  <b>Output:</b> Org-chart style app</p>
+</div>
+
+<div class="project-card">
+  <h4>Inventory System</h4>
+  <p class="meta">Days 78&ndash;79</p>
+  <p><b>Skills:</b> Full OOP + business rules<br>
+  <b>Output:</b> Stock/order management app</p>
+</div>
+
+<div class="project-card">
+  <h4>Capstone Backend</h4>
+  <p class="meta">Days 85&ndash;90</p>
+  <p><b>Skills:</b> Layered architecture, full SQL integration<br>
+  <b>Output:</b> Portfolio-ready capstone + resume</p>
+</div>
+
+<h2 id="interview">5. Interview Preparation Kit</h2>
+<ul class="checklist">
+  <li>Core Java, OOP, Collections, Exceptions/Threads &mdash; 15 Qs each (Days 80&ndash;83)</li>
+  <li>SQL: Window Functions, Optimization, Normalization/Design (Days 78&ndash;81)</li>
+  <li>Mock Interview 1 (Day 84) &rarr; Full Mock (Day 89)</li>
+  <li>Resume & portfolio documentation (Days 82&ndash;83)</li>
+</ul>
+
+<h2 id="tracker">6. Progress Trackers</h2>
+<table>
+<thead><tr><th>Metric</th><th>Target</th><th>Actual</th></tr></thead>
+<tbody>
+<tr><td>Java problems solved</td><td>&mdash;</td><td></td></tr>
+<tr><td>SQL queries solved</td><td>&mdash;</td><td></td></tr>
+<tr><td>Projects completed</td><td>10</td><td></td></tr>
+<tr><td>Weekly checkpoints passed</td><td>13</td><td></td></tr>
+<tr><td>Monthly assessments passed</td><td>3</td><td></td></tr>
+<tr><td>Mock interview scores</td><td>&mdash;</td><td></td></tr>
+</tbody>
+</table>
+
+<ul class="checklist">
+  <li>Month 1 Complete</li>
+  <li>Month 2 Complete</li>
+  <li>Month 3 Complete</li>
+  <li>Capstone Shipped</li>
+  <li>Resume Finalized</li>
+  <li>Applied to 5 Jobs</li>
+</ul>
+
+<footer class="page-footer">&#127891; Bootcamp Complete &mdash; Portfolio-ready, interview-ready Java Backend Developer</footer>
+
+</body>
+</html>
